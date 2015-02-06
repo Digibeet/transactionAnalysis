@@ -4,17 +4,15 @@ function allowDrop(ev) {
 
 function drop(ev) {
     ev.preventDefault();
+    console.log("File landed")
     var data = ev.dataTransfer.getData("csv");
     var files = ev.dataTransfer.files
-    console.log(files)
     var textFile = files[0];
     var reader = new FileReader();
     var processInput = function(){
-    	console.log("Load ready")
     	var result = reader.result;
     	var rows = result.split("\n")
     	var sourcesOfIncome = {};
-    	console.log(rows[rows.length -1].split(","))
     	for(var rowIndex = 1; rowIndex < rows.length - 1; rowIndex++){
     		/*indexes:
     			0:Datum	1:Naam / Omschrijving	2:Rekening	3:Tegenrekening	4:Code	5:Af Bij	6:Bedrag (EUR) 7:bedrags (cents) 8:MutatieSoort	9:Mededelingen
@@ -28,13 +26,11 @@ function drop(ev) {
     			else
     				sourcesOfIncome[source] = amount;
     	}
-    	console.log(sourcesOfIncome)
     	var incomeData = [];
     	for(source in sourcesOfIncome) {
     		var amount = sourcesOfIncome[source];
     		incomeData.push([source, amount])
     	}
-    	console.log(incomeData)
     	generateCharts(incomeData);
     }
 	reader.onloadend = processInput;
@@ -43,7 +39,7 @@ function drop(ev) {
 
 function generateCharts(data, subtitle){
 	$(function () {
-	    $('#container').highcharts({
+	    $('#sourcesOfIncome').highcharts({
 	        chart: {
 	            type: 'column'
 	        },
@@ -76,7 +72,7 @@ function generateCharts(data, subtitle){
 	            pointFormat: 'Total income: <b>{point.y:.1f}</b>'
 	        },
 	        series: [{
-	            name: 'Population',
+	            name: 'Sources of income',
 	            data: data,
 	            dataLabels: {
 	                enabled: true,

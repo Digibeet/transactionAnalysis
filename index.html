@@ -1,16 +1,25 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<!-- JQuery -->
+<script src="lib/jquery/jquery-1.11.2.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap-theme.css">
 <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/custom.css">
-<script src="lib/jquery/jquery-1.11.2.min.js"></script>
+
+<!-- Highcharts -->
 <script src="lib/highcharts/highcharts.js"></script>
+
 <script src="js/generateCharts.js"></script>
 </head>
 <body>
-	<div id="dropbox" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+	<div id="fileInput">
+		<div id="dropbox" ondrop="drop(event)" ondragover="allowDrop(event)"><H1>Drag and drop the transaction file</H1></div>
+	</div>
 	<div id="menu"></div>
-	<div id="container" style="min-width: 500px; height: 900px; margin: 0 auto"></div>
+	<div id="sourcesOfIncome" style="min-width: 500px; height: 900px; margin: 0 auto"></div>
 </body>
 </html>
